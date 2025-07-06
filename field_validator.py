@@ -1,8 +1,8 @@
 from pydantic import BaseModel, EmailStr, AnyUrl, Field, field_validator,PydanticUserError
 
 from typing import List, Dict, Optional, Annotated
-try : 
-    class User(BaseModel):
+
+class User(BaseModel):
 
         name :str
         age:Annotated[int,Field(gt=0, lt=150 , description='Age must be between 0 and 150',strict=True)]
@@ -26,8 +26,6 @@ try :
         def capital_name(cls ,value):
 
             return value.upper()
-except PydanticUserError as exc_info:
-    assert exc_info.code == 'decorator-missing-field'
 
 
 patient_info={'name' : 'Anushka','age': 20,'married' : False,'allergies':['Chilli Flakes'],'email':'abc@icici.com','website':'https://www.example.com'}
